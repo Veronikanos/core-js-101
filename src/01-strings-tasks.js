@@ -281,10 +281,26 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+  const last = value.slice(-1);
+  const start = value.slice(0, -1);
+
+  const res = cards.indexOf(start);
+  switch (last) {
+    case '♦':
+      return res + 13;
+    case '♥':
+      return res + 26;
+    case '♠':
+      return res + 39;
+    default:
+      return res;
+  }
 }
 
+getCardId('10♠');
 
 module.exports = {
   concatenateStrings,
